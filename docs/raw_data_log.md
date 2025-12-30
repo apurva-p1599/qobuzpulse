@@ -10,4 +10,4 @@ No transformations are applied at this stage.
 ## Notes
 - Dataset is used as a proxy for Qobuz metadata
 - Raw file is preserved exactly as received
-- All cleaning and transformations are deferred to Week 3
+- All cleaning and transformations are deferred in other part
