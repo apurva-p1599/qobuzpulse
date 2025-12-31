@@ -1,68 +1,104 @@
-# Data Dictionary (Version 1)
+# Data Dictionary
 
-# Week 1
-
-## Table: fact_tracks
-| Field name | Description | Source | Sample values |
-|----------|------------|--------|---------------|
-| track_id | Unique identifier for each track | track_id | 4iV5W9uYEdYUVa79Axb7Rh |
-| popularity | Popularity score of the track | popularity | 75 |
-| duration_ms | Duration in milliseconds | duration_ms | 210000 |
-| danceability | Danceability score | danceability | 0.81 |
-
-## Table: dim_artist
-| Field name | Description | Source | Sample values |
-|----------|------------|--------|---------------|
-| artist_id | Surrogate key for artist | artists | 1 |
-| artist_name | Name of the artist | artists | Drake |
-
-## Table: dim_album
-| Field name | Description | Source | Sample values |
-|----------|------------|--------|---------------|
-| album_id | Surrogate key for album | album_name | 10 |
-| album_name | Name of the album | album_name | Scorpion |
-
-## Table: dim_genre
-| Field name | Description | Source | Sample values |
-|----------|------------|--------|---------------|
-| genre_id | Surrogate key for genre | track_genre | 3 |
-| genre_name | Genre name | track_genre | hip hop |
-
-# Data Dictionary – Raw Dataset (Week 2)
-
-This dictionary describes the raw dataset as received.
-Values are documented as-is without enforcing constraints or transformations.
+This document describes the structure, meaning, and usage of fields in the
+QobuzPulse music analytics dataset. The dataset represents track-level metadata
+used for analysis, modeling, and dashboard development.
 
 ---
 
-| Field Name | Description | Data Type | Source | Notes |
-|----------|------------|----------|--------|------|
-| track_id | Unique identifier for a track | Text | Spotify Dataset | Contains duplicates |
-| artists | Name(s) of artist(s) | Text | Spotify Dataset | Unicode values present |
-| album_name | Album title | Text | Spotify Dataset | Some missing values |
-| track_name | Track title | Text | Spotify Dataset | Trimmed for whitespace only |
-| popularity | Popularity score (0–100) | Numeric | Spotify Dataset | Used for ranking |
-| duration_ms | Track duration in milliseconds | Numeric | Spotify Dataset | No standardization applied |
-| explicit | Explicit content flag | Boolean | Spotify Dataset | TRUE/FALSE |
-| danceability | Danceability score | Numeric | Spotify Dataset | Range 0–1 |
-| energy | Energy score | Numeric | Spotify Dataset | Range 0–1 |
-| key | Musical key | Numeric | Spotify Dataset | 0–11 scale |
-| loudness | Loudness in decibels | Numeric | Spotify Dataset | Negative values expected |
-| mode | Major (1) / Minor (0) | Numeric | Spotify Dataset | Binary |
-| speechiness | Speech presence | Numeric | Spotify Dataset | Range 0–1 |
-| acousticness | Acoustic confidence | Numeric | Spotify Dataset | Range 0–1 |
-| instrumentalness | Instrumental confidence | Numeric | Spotify Dataset | Range 0–1 |
-| liveness | Live recording confidence | Numeric | Spotify Dataset | Range 0–1 |
-| valence | Positivity score | Numeric | Spotify Dataset | Range 0–1 |
-| tempo | Beats per minute | Numeric | Spotify Dataset | Wide range |
-| time_signature | Time signature | Numeric | Spotify Dataset | Typically 3–7 |
-| track_genre | Genre classification | Text | Spotify Dataset | Not normalized |
+## Dataset Overview
+
+- Domain: Music streaming analytics
+- Granularity: One row per track per contextual classification (e.g., genre)
+- Source: Public Spotify Tracks dataset (used to simulate Qobuz metadata)
+- Format: CSV (`cleaned_data/tracks_cleaned.csv`)
+
+Notes:
+- Track identifiers are not guaranteed to be unique.
+- A single track may legitimately appear multiple times under different genres
+  or album contexts.
+- The dataset is intended for analytical use, not transactional updates.
 
 ---
 
-## Notes
-- No constraints or validations enforced at this stage
-- Dictionary reflects raw state only
-- Cleaning and normalization planned for Week 3
+## Track-Level Dataset Fields
 
+The following fields are present in the cleaned analytics dataset.
 
+### Core Identifiers & Metadata
+
+| Column Name | Description | Data Type | Example |
+|------------|------------|-----------|---------|
+| track_id | Platform-specific identifier for a track | Text | 4iV5W9uYEdYUVa79Axb7Rh |
+| track_name | Name of the track | Text | Snow (Hey Oh) |
+| artists | Artist or group associated with the track | Text | Red Hot Chili Peppers |
+| album_name | Album in which the track appears | Text | Stadium Arcadium |
+| track_genre | Original genre classification | Text | alt-rock |
+
+---
+
+### Standardized Text Fields
+
+These fields are standardized versions of source text fields and are preferred
+for analysis and modeling.
+
+| Column Name | Description | Data Type | Example |
+|------------|------------|-----------|---------|
+| artist_clean | Trimmed artist name for consistency | Text | Red Hot Chili Peppers |
+| album_clean | Trimmed album name for consistency | Text | Stadium Arcadium |
+| track_genre_clean | Trimmed genre value used in analysis | Text | alt-rock |
+
+---
+
+### Popularity & Duration
+
+| Column Name | Description | Data Type | Example |
+|------------|------------|-----------|---------|
+| popularity | Popularity score assigned by the platform | Integer | 75 |
+| duration_ms | Track duration in milliseconds | Integer | 210000 |
+| explicit | Indicates explicit content | Boolean | false |
+
+---
+
+### Audio Features
+
+| Column Name | Description | Data Type | Valid Range / Example |
+|------------|------------|-----------|----------------------|
+| danceability | Suitability of a track for dancing | Float | 0.0 – 1.0 |
+| energy | Intensity and activity measure | Float | 0.0 – 1.0 |
+| key | Musical key of the track | Integer | 0 – 11 |
+| loudness | Overall loudness in decibels (dB) | Float | -5.2 |
+| mode | Modality: major (1) or minor (0) | Integer | 0 / 1 |
+| speechiness | Presence of spoken words | Float | 0.0 – 1.0 |
+| acousticness | Likelihood of acoustic performance | Float | 0.0 – 1.0 |
+| instrumentalness | Likelihood of instrumental content | Float | 0.0 – 1.0 |
+| liveness | Presence of live audience | Float | 0.0 – 1.0 |
+| valence | Musical positivity | Float | 0.0 – 1.0 |
+| tempo | Estimated tempo (BPM) | Float | 120.5 |
+| time_signature | Estimated beats per bar | Integer | 3 – 7 |
+
+---
+
+## Data Quality & Design Notes
+
+- A small number of records containing invalid literal values in critical
+  identifiers were removed during cleaning.
+- Repeated `track_id` values are expected and intentional.
+- No records were removed solely due to repeated identifiers.
+- Multi-genre classification is preserved.
+- Non-English and Unicode text values are treated as valid.
+- Temporary processing and validation fields are excluded from this dictionary.
+
+---
+
+## Modeling Notes (Forward-Looking)
+
+The dataset is designed to support dimensional modeling.
+
+Planned analytical structures include:
+- A track-level fact table
+- Artist, album, and genre dimensions
+- Surrogate keys generated during relational modeling
+
+These structures are not materialized in the dataset itself and are documented
+here for design context only.
