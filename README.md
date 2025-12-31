@@ -33,22 +33,21 @@ The goal of this project is to:
 
 qobuzpulse/
 ├── raw_data/
-│ └── spotify/
-│ └── dataset.csv
+│   └── spotify/
+│       └── dataset.csv
 ├── cleaned_data/
-│ └── tracks_cleaned.csv
+│   └── tracks_cleaned.csv
 ├── data_mart/
-│ └── (SQLite database files – in progress)
+│   └── (SQLite database files – in progress)
 ├── dashboard/
-│ └── (Power BI dashboards – in progress)
+│   └── (Power BI dashboards – in progress)
 ├── docs/
-│ ├── data_dictionary.md
-│ ├── data_cleaning_and_validation.md
-│ ├── data_quality_scorecard.md
-│ └── star_schema.drawio
+│   ├── data_dictionary.md
+│   ├── data_cleaning_and_validation.md
+│   ├── data_quality_scorecard.md
+│   └── star_schema.drawio
 ├── requirements.txt
 └── README.md
-
 
 ---
 
