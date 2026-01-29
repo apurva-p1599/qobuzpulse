@@ -124,7 +124,7 @@ function Genres() {
             <div className="flex-1">
               <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">Understanding Genre Analytics</h3>
               <p className="text-gray-300 leading-relaxed mb-3">
-                This page provides deep insights into musical genres. Analyze track counts, popularity trends, 
+                This page does not provides deep insights into musical genres. Analyze track counts, popularity trends, 
                 and audio characteristics (energy, danceability, valence) across different genres.
               </p>
               <ul className="text-gray-300 space-y-1 text-sm">
