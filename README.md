@@ -3,18 +3,18 @@
 QobuzPulse is an end-to-end music analytics project that simulates a real-world
 streaming analytics pipeline using a Spotify tracks dataset as a proxy for
 Qobuz-style metadata. The project focuses on data quality, dimensional modeling,
-and analytical insights rather than raw ingestion alone.
+and interactive web-based analytics for insight discovery.
 
 ---
 
 ## Project Objective
 
 The goal of this project is to:
-- Ingest raw music metadata
+- Ingest raw music metadata from Spotify
 - Clean and validate the data responsibly
 - Design a dimensional (star) schema
-- Store curated data in a relational database
-- Perform analytics and build dashboards for insight discovery
+- Build interactive web dashboards for data exploration
+- Perform analytics to discover trends and insights
 
 ---
 
@@ -22,32 +22,75 @@ The goal of this project is to:
 
 - **Dataset:** Public Spotify Tracks dataset  
 - **Granularity:** Track-level metadata with audio features  
-- **Scale:** ~114,000 records  
+- **Scale:** 113,949 clean records  
 - **Notes:**  
   - Repeated track identifiers are expected  
-  - Multi-genre classification is preserved intentionally  
+  - Multi-genre classification is preserved intentionally
+  - Blank/corrupted rows have been removed  
 
 ---
 
 ## Repository Structure
 
+```
 qobuzpulse/
 ├── raw_data/
 │   └── spotify/
 │       └── dataset.csv
 ├── cleaned_data/
 │   └── tracks_cleaned.csv
+├── website/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   ├── Artists.jsx
+│   │   │   ├── Genres.jsx
+│   │   │   ├── Tracks.jsx
+│   │   │   ├── Momentum.jsx
+│   │   │   └── Insights.jsx
+│   │   └── utils/
+│   ├── public/
+│   │   └── tracks_cleaned.csv
+│   └── package.json
 ├── data_mart/
-│   └── (SQLite database files – in progress)
+│   └── sqlite/
 ├── dashboard/
-│   └── (Power BI dashboards – in progress)
 ├── docs/
 │   ├── data_dictionary.md
 │   ├── data_cleaning_and_validation.md
 │   ├── data_quality_scorecard.md
-│   └── star_schema.drawio
-├── requirements.txt
+│   └── star_schema.md
 └── README.md
+```
+
+---
+
+## Web Dashboard
+
+An interactive React-based web dashboard has been built to visualize and explore the music data:
+
+### Features:
+- **Home:** Overview statistics and key metrics
+- **Artists:** Artist rankings, track counts, and popularity analysis
+- **Genres:** Genre distribution, audio features comparison, and growth trends
+- **Tracks:** Searchable/filterable track listing with detailed metadata
+- **Momentum:** Artist momentum scoring based on popularity and track performance
+- **Insights:** Data quality overview and analytical summaries
+
+### Technology Stack:
+- **Frontend:** React + Vite
+- **Styling:** TailwindCSS
+- **Charts:** Recharts
+- **Data Loading:** PapaParse (CSV parsing)
+
+### Running the Dashboard:
+```bash
+cd website
+npm install
+npm run dev
+```
+Visit: `http://localhost:3001`
 
 ---
 
@@ -80,17 +123,19 @@ in a SQLite database in the next phase.
 
 ## Current Status
 
-Completed:
+✅ **Completed:**
 - Raw data ingestion and profiling
 - Data cleaning and validation
-- Clean dataset export
+- Clean dataset export (113,949 tracks)
 - Data dictionary and quality documentation
 - Star schema design
+- **Interactive web dashboard with 6 analytical pages**
+- Responsive UI with modern visualizations
 
-In progress:
+🚧 **In Progress:**
 - SQLite database implementation
-- Analytical queries
-- Dashboard development (Power BI)
+- Advanced analytical queries
+- Additional dashboard features
 
 ---
 
@@ -98,8 +143,9 @@ In progress:
 
 - Load cleaned data into SQLite tables
 - Generate dimension and fact tables
-- Perform analytical queries
-- Build interactive dashboards for insights
+- Perform complex analytical queries
+- Add export/download features to dashboard
+- Implement additional data filters and sorting options
 
 ---
 
