@@ -269,7 +269,7 @@ function Momentum() {
                   <p className="mb-2"><strong>Purpose:</strong> See how artists are spread across performance levels.</p>
                   <p className="mb-2"><strong>High Momentum (80+):</strong> Top-tier artists with many popular tracks</p>
                   <p className="mb-2"><strong>Medium Momentum (50-79):</strong> Solid performers with good track counts/popularity</p>
-                  <p className="mb-2"><strong>Low Momentum (<50):</strong> Emerging or niche artists</p>
+                  <p className="mb-2"><strong>Low Momentum (&lt;50):</strong> Emerging or niche artists</p>
                   <p className="mb-2"><strong>X-axis:</strong> Momentum tier categories</p>
                   <p className="mb-2"><strong>Y-axis:</strong> Number of artists in each tier</p>
                   <p><strong>Insight:</strong> Understand the performance distribution - are most artists high-momentum superstars or more balanced?</p>
