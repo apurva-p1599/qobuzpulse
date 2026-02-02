@@ -132,23 +132,6 @@ in a SQLite database in the next phase.
 - **Interactive web dashboard with 6 analytical pages**
 - Responsive UI with modern visualizations
 
-🚧 **In Progress:**
-- SQLite database implementation
-- Advanced analytical queries
-- Additional dashboard features
-- have new UI
-
----
-
-## Next Steps
-
-- Load cleaned data into SQLite tables
-- Generate dimension and fact tables
-- Perform complex analytical queries
-- Add export/download features to dashboard
-- Implement additional data filters and sorting options
-
----
 
 ## Notes
 
