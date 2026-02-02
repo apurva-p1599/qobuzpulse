@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { loadTrackData, getGenreStats, getGenreGrowthTrends } from '../utils/csvLoader'
+import InfoIcon from '../components/InfoIcon'
 import {
   BarChart,
   Bar,
@@ -211,7 +212,22 @@ function Genres() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* Genre Count Chart */}
         <div className="card">
-          <h2 className="text-2xl font-bold mb-2 text-white">Top 20 Genres by Track Count</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-2xl font-bold text-white">Top 20 Genres by Track Count</h2>
+            <InfoIcon
+              title="Top 20 Genres by Track Count"
+              content={
+                <div>
+                  <p className="mb-2"><strong>Purpose:</strong> Compare genres by volume and popularity.</p>
+                  <p className="mb-2"><strong>Blue bars:</strong> Number of tracks in each genre</p>
+                  <p className="mb-2"><strong>Purple bars:</strong> Average popularity score (0-100) for tracks in that genre</p>
+                  <p className="mb-2"><strong>X-axis:</strong> Genre names (rotated for readability)</p>
+                  <p className="mb-2"><strong>Y-axis:</strong> Count/Score values</p>
+                  <p><strong>Insight:</strong> Find which genres have the most tracks AND which genres contain the most popular tracks.</p>
+                </div>
+              }
+            />
+          </div>
           <p className="text-sm text-gray-400 mb-4">
             Compare genres by the number of tracks (blue bars) and average popularity (purple bars). 
             This helps identify which genres dominate your collection.
@@ -234,7 +250,23 @@ function Genres() {
 
         {/* Genre Features */}
         <div className="card">
-          <h2 className="text-2xl font-bold mb-2 text-white">Audio Features by Genre (Top 10)</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-2xl font-bold text-white">Audio Features by Genre (Top 10)</h2>
+            <InfoIcon
+              title="Audio Features by Genre"
+              content={
+                <div>
+                  <p className="mb-2"><strong>Purpose:</strong> Compare audio characteristics across genres.</p>
+                  <p className="mb-2"><strong>Blue line (Energy):</strong> Intensity and power (0-1 scale). Higher = more energetic</p>
+                  <p className="mb-2"><strong>Purple line (Danceability):</strong> How suitable for dancing (0-1 scale). Higher = more danceable</p>
+                  <p className="mb-2"><strong>Pink line (Valence):</strong> Musical positiveness (0-1 scale). Higher = more positive/happy</p>
+                  <p className="mb-2"><strong>X-axis:</strong> Genre names</p>
+                  <p className="mb-2"><strong>Y-axis:</strong> Feature values (0.0 to 1.0)</p>
+                  <p><strong>Insight:</strong> Understand the "feel" of each genre - is it energetic, danceable, happy, or mellow?</p>
+                </div>
+              }
+            />
+          </div>
           <p className="text-sm text-gray-400 mb-4">
             Line chart comparing audio characteristics across genres. Higher values indicate more energy, 
             danceability, or positive mood (valence). Use this to understand the musical "feel" of each genre.
@@ -260,7 +292,21 @@ function Genres() {
       {/* Genre Pie Chart and Radar */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <div className="card">
-          <h2 className="text-2xl font-bold mb-2 text-white">Genre Distribution (Top 10)</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-2xl font-bold text-white">Genre Distribution (Top 10)</h2>
+            <InfoIcon
+              title="Genre Distribution"
+              content={
+                <div>
+                  <p className="mb-2"><strong>Purpose:</strong> Visual breakdown of genre proportions.</p>
+                  <p className="mb-2"><strong>Pie Slices:</strong> Each colored segment represents a genre</p>
+                  <p className="mb-2"><strong>Size:</strong> Larger slices = more tracks in that genre</p>
+                  <p className="mb-2"><strong>Labels:</strong> Show genre name and percentage of total</p>
+                  <p><strong>Insight:</strong> Quickly see which genres dominate your collection and their relative proportions.</p>
+                </div>
+              }
+            />
+          </div>
           <p className="text-sm text-gray-400 mb-4">
             Pie chart showing the proportional distribution of the top 10 genres. Larger slices represent 
             genres with more tracks in your collection.
@@ -290,7 +336,22 @@ function Genres() {
         </div>
 
         <div className="card">
-          <h2 className="text-2xl font-bold mb-2 text-white">Genre Feature Analysis</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-2xl font-bold text-white">Genre Feature Analysis</h2>
+            <InfoIcon
+              title="Genre Feature Analysis (Radar Chart)"
+              content={
+                <div>
+                  <p className="mb-2"><strong>Purpose:</strong> Visualize all audio characteristics of a genre at once.</p>
+                  <p className="mb-2"><strong>How to use:</strong> Click any genre card below to display its audio profile</p>
+                  <p className="mb-2"><strong>Axes:</strong> Each spoke represents a different feature (Energy, Danceability, Valence, Popularity)</p>
+                  <p className="mb-2"><strong>Shape:</strong> The blue shaded area shows the genre's "signature" - larger area = higher values across features</p>
+                  <p className="mb-2"><strong>Scale:</strong> All values normalized to 0-1 (popularity divided by 100)</p>
+                  <p><strong>Insight:</strong> Compare the "character" of different genres by their unique radar shapes.</p>
+                </div>
+              }
+            />
+          </div>
           <p className="text-sm text-gray-400 mb-4">
             Interactive radar chart showing detailed audio characteristics for a selected genre. 
             Click any genre card below to see its unique musical profile.

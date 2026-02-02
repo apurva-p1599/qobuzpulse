@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { loadTrackData, formatDuration } from '../utils/csvLoader'
 import { getArtistMomentum } from '../utils/csvLoader'
+import InfoIcon from '../components/InfoIcon'
 import {
   LineChart,
   Line,
@@ -302,7 +303,21 @@ function Insights() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* Popularity by Genre */}
         <div className="card">
-          <h2 className="text-2xl font-bold mb-2 text-white">Popularity by Genre (Top 15)</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-2xl font-bold text-white">Popularity by Genre (Top 15)</h2>
+            <InfoIcon
+              title="Popularity by Genre"
+              content={
+                <div>
+                  <p className="mb-2"><strong>Purpose:</strong> Compare average popularity across different genres.</p>
+                  <p className="mb-2"><strong>Y-axis:</strong> Genre names</p>
+                  <p className="mb-2"><strong>X-axis:</strong> Average popularity score (0-100)</p>
+                  <p className="mb-2"><strong>Horizontal bars:</strong> Longer bars = higher average popularity for that genre</p>
+                  <p><strong>Insight:</strong> Identify which genres tend to have more mainstream/popular tracks vs niche/underground ones.</p>
+                </div>
+              }
+            />
+          </div>
           <p className="text-sm text-gray-400 mb-4">
             Horizontal bar chart showing average popularity scores for each genre. Longer bars indicate genres 
             with higher average popularity. This helps identify which genres tend to have more mainstream appeal.
@@ -324,7 +339,22 @@ function Insights() {
 
         {/* Duration Distribution */}
         <div className="card">
-          <h2 className="text-2xl font-bold mb-2 text-white">Track Duration Distribution</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-2xl font-bold text-white">Track Duration Distribution</h2>
+            <InfoIcon
+              title="Track Duration Distribution"
+              content={
+                <div>
+                  <p className="mb-2"><strong>Purpose:</strong> See how track lengths are distributed in your collection.</p>
+                  <p className="mb-2"><strong>X-axis:</strong> Duration ranges (in minutes)</p>
+                  <p className="mb-2"><strong>Y-axis:</strong> Number of tracks</p>
+                  <p className="mb-2"><strong>Blue shaded area:</strong> Shows the distribution curve</p>
+                  <p className="mb-2"><strong>Peak:</strong> The highest point indicates the most common track duration</p>
+                  <p><strong>Insight:</strong> Most songs are 2-5 minutes. Outliers might be extended mixes, interludes, or live versions.</p>
+                </div>
+              }
+            />
+          </div>
           <p className="text-sm text-gray-400 mb-4">
             Area chart showing how tracks are distributed across different duration ranges. Most songs typically 
             fall between 2-5 minutes. This visualization helps understand the typical length of tracks in your collection.
@@ -352,7 +382,22 @@ function Insights() {
 
       {/* Energy vs Valence Scatter */}
       <div className="card mb-8">
-        <h2 className="text-2xl font-bold mb-2 text-white">Energy vs Valence Analysis</h2>
+        <div className="flex items-center justify-between mb-2">
+          <h2 className="text-2xl font-bold text-white">Energy vs Valence Analysis</h2>
+          <InfoIcon
+            title="Energy vs Valence Analysis"
+            content={
+              <div>
+                <p className="mb-2"><strong>Purpose:</strong> Explore the relationship between energy and mood in tracks.</p>
+                <p className="mb-2"><strong>X-axis (Energy):</strong> Track intensity (0-1). Higher = more energetic/powerful</p>
+                <p className="mb-2"><strong>Y-axis (Valence):</strong> Musical positiveness (0-1). Higher = happier/more positive</p>
+                <p className="mb-2"><strong>Each dot:</strong> Represents a track. Color-coded by popularity</p>
+                <p className="mb-2"><strong>Patterns:</strong> Clusters reveal common combinations (e.g., high energy + high valence = upbeat party music)</p>
+                <p><strong>Insight:</strong> Discover if popular tracks favor certain energy-mood combinations.</p>
+              </div>
+            }
+          />
+        </div>
         <p className="text-gray-400 text-sm mb-4">
           Scatter plot exploring the relationship between energy (intensity) and valence (mood) in tracks. 
           Each point represents a track. Points in the upper-right are high-energy and happy, while lower-left 
@@ -393,7 +438,21 @@ function Insights() {
         {/* Tempo Distribution */}
         {tempoAnalysis && (
           <div className="card">
-            <h2 className="text-2xl font-bold mb-2 text-white">Tempo Distribution</h2>
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-2xl font-bold text-white">Tempo Distribution</h2>
+              <InfoIcon
+                title="Tempo Distribution"
+                content={
+                  <div>
+                    <p className="mb-2"><strong>Purpose:</strong> Understand the speed/pace of tracks in your collection.</p>
+                    <p className="mb-2"><strong>X-axis:</strong> BPM (Beats Per Minute) ranges</p>
+                    <p className="mb-2"><strong>Y-axis:</strong> Number of tracks</p>
+                    <p className="mb-2"><strong>BPM Reference:</strong> 60-80 = slow ballads, 100-130 = moderate pop/rock, 140+ = fast dance/electronic</p>
+                    <p><strong>Insight:</strong> See if your collection leans toward uptempo dance music or slower, more relaxed tracks.</p>
+                  </div>
+                }
+              />
+            </div>
             <p className="text-sm text-gray-400 mb-4">
               Tempo (BPM - Beats Per Minute) distribution across your collection. Most popular music ranges 
               from 80-160 BPM. This chart shows how tracks are distributed across tempo ranges.

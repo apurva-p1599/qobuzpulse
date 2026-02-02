@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { loadTrackData, getArtistMomentum, getRisingArtists } from '../utils/csvLoader'
+import InfoIcon from '../components/InfoIcon'
 import {
   BarChart,
   Bar,
@@ -221,7 +222,22 @@ function Momentum() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* Momentum Chart */}
         <div className="card">
-          <h2 className="text-2xl font-bold mb-2 text-white">Top 20 Artists by Momentum</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-2xl font-bold text-white">Top 20 Artists by Momentum</h2>
+            <InfoIcon
+              title="Artist Momentum Score"
+              content={
+                <div>
+                  <p className="mb-2"><strong>Purpose:</strong> Identify artists with strong overall performance.</p>
+                  <p className="mb-2"><strong>Momentum Score Formula:</strong> (Avg Popularity × Track Count) / 100 + High Popularity Bonuses</p>
+                  <p className="mb-2"><strong>Blue bars (Left axis):</strong> Momentum score - combines popularity, track count, and hit tracks</p>
+                  <p className="mb-2"><strong>Purple line (Right axis):</strong> Average popularity across all their tracks</p>
+                  <p className="mb-2"><strong>High Score:</strong> Artist has many tracks with high popularity = strong momentum</p>
+                  <p><strong>Insight:</strong> Find artists who are both prolific AND popular, not just one or the other.</p>
+                </div>
+              }
+            />
+          </div>
           <p className="text-sm text-gray-400 mb-4">
             Combined chart showing momentum scores (bars) and average popularity (line). Higher momentum indicates stronger overall performance.
           </p>
@@ -244,7 +260,23 @@ function Momentum() {
 
         {/* Momentum Tier Distribution */}
         <div className="card">
-          <h2 className="text-2xl font-bold mb-2 text-white">Momentum Tier Distribution</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-2xl font-bold text-white">Momentum Tier Distribution</h2>
+            <InfoIcon
+              title="Momentum Tier Distribution"
+              content={
+                <div>
+                  <p className="mb-2"><strong>Purpose:</strong> See how artists are spread across performance levels.</p>
+                  <p className="mb-2"><strong>High Momentum (80+):</strong> Top-tier artists with many popular tracks</p>
+                  <p className="mb-2"><strong>Medium Momentum (50-79):</strong> Solid performers with good track counts/popularity</p>
+                  <p className="mb-2"><strong>Low Momentum (<50):</strong> Emerging or niche artists</p>
+                  <p className="mb-2"><strong>X-axis:</strong> Momentum tier categories</p>
+                  <p className="mb-2"><strong>Y-axis:</strong> Number of artists in each tier</p>
+                  <p><strong>Insight:</strong> Understand the performance distribution - are most artists high-momentum superstars or more balanced?</p>
+                </div>
+              }
+            />
+          </div>
           <p className="text-sm text-gray-400 mb-4">
             Distribution of artists across momentum tiers. High momentum artists have consistently strong performance across multiple tracks.
           </p>
@@ -265,7 +297,22 @@ function Momentum() {
 
       {/* Popularity Trend by Track Count */}
       <div className="card mb-8">
-        <h2 className="text-2xl font-bold mb-2 text-white">Popularity Trends by Artist Size</h2>
+        <div className="flex items-center justify-between mb-2">
+          <h2 className="text-2xl font-bold text-white">Popularity Trends by Artist Size</h2>
+          <InfoIcon
+            title="Popularity Trends by Artist Size"
+            content={
+              <div>
+                <p className="mb-2"><strong>Purpose:</strong> Analyze if artists with more tracks tend to be more or less popular.</p>
+                <p className="mb-2"><strong>X-axis:</strong> Track count ranges (1-5 tracks, 6-10 tracks, etc.)</p>
+                <p className="mb-2"><strong>Y-axis:</strong> Average popularity score (0-100)</p>
+                <p className="mb-2"><strong>Blue shaded area:</strong> Shows the trend line of popularity across catalog sizes</p>
+                <p className="mb-2"><strong>Hover:</strong> See exact average popularity and artist count for each range</p>
+                <p><strong>Insight:</strong> Discover if bigger catalogs = more popularity, or if smaller focused catalogs perform better.</p>
+              </div>
+            }
+          />
+        </div>
         <p className="text-sm text-gray-400 mb-4">
           Average popularity across artists grouped by track count. This helps identify if larger catalogs correlate with higher popularity.
         </p>

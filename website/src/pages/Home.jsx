@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { loadTrackData, formatDuration } from '../utils/csvLoader'
+import InfoIcon from '../components/InfoIcon'
 import {
   BarChart,
   Bar,
@@ -191,7 +192,20 @@ function Home() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* Top Genres Bar Chart */}
         <div className="card">
-          <h2 className="text-2xl font-bold mb-2 text-white">Top 10 Genres</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-2xl font-bold text-white">Top 10 Genres</h2>
+            <InfoIcon
+              title="Top 10 Genres"
+              content={
+                <div>
+                  <p className="mb-2"><strong>Purpose:</strong> Shows the most common genres in your music collection.</p>
+                  <p className="mb-2"><strong>Y-axis:</strong> Genre names</p>
+                  <p className="mb-2"><strong>X-axis:</strong> Number of tracks</p>
+                  <p><strong>Insight:</strong> Longer bars = more tracks in that genre. This helps you understand which musical styles dominate your collection.</p>
+                </div>
+              }
+            />
+          </div>
           <p className="text-sm text-gray-400 mb-4">
             Shows which genres dominate your collection. Higher bars indicate more tracks in that genre.
           </p>
@@ -212,7 +226,21 @@ function Home() {
 
         {/* Popularity Distribution */}
         <div className="card">
-          <h2 className="text-2xl font-bold mb-2 text-white">Popularity Distribution</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-2xl font-bold text-white">Popularity Distribution</h2>
+            <InfoIcon
+              title="Popularity Distribution"
+              content={
+                <div>
+                  <p className="mb-2"><strong>Purpose:</strong> Shows how tracks are spread across different popularity levels.</p>
+                  <p className="mb-2"><strong>X-axis:</strong> Popularity ranges (e.g., 0-20, 21-40, etc.)</p>
+                  <p className="mb-2"><strong>Y-axis:</strong> Number of tracks</p>
+                  <p className="mb-2"><strong>Popularity Score:</strong> 0 = least popular, 100 = most popular (based on streaming data)</p>
+                  <p><strong>Insight:</strong> Helps identify if your collection leans toward mainstream hits or underground tracks.</p>
+                </div>
+              }
+            />
+          </div>
           <p className="text-sm text-gray-400 mb-4">
             How tracks are distributed across popularity ranges. Popularity scores range from 0 (least popular) to 100 (most popular).
           </p>
@@ -234,7 +262,21 @@ function Home() {
 
       {/* Genre Pie Chart */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-2 text-white">Genre Distribution (Top 10)</h2>
+        <div className="flex items-center justify-between mb-2">
+          <h2 className="text-2xl font-bold text-white">Genre Distribution (Top 8)</h2>
+          <InfoIcon
+            title="Genre Distribution"
+            content={
+              <div>
+                <p className="mb-2"><strong>Purpose:</strong> Visual representation of genre proportions in your collection.</p>
+                <p className="mb-2"><strong>Pie Slices:</strong> Each colored slice represents a genre</p>
+                <p className="mb-2"><strong>Size:</strong> Larger slice = more tracks in that genre</p>
+                <p className="mb-2"><strong>Legend:</strong> Shows genre names and their corresponding colors</p>
+                <p><strong>Insight:</strong> Quickly see which genres make up the majority of your collection at a glance.</p>
+              </div>
+            }
+          />
+        </div>
         <p className="text-sm text-gray-400 mb-4">
           Visual representation of genre proportions. Each slice shows the percentage of tracks belonging to that genre. 
           Hover over slices to see exact numbers.

@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { loadTrackData, getUniqueArtists } from '../utils/csvLoader'
+import InfoIcon from '../components/InfoIcon'
 import {
   BarChart,
   Bar,
@@ -169,7 +170,22 @@ function Artists() {
       {/* Top Artists Chart */}
       {topArtistsChart.length > 0 && (
         <div className="card mb-6">
-          <h2 className="text-2xl font-bold mb-2 text-white">Top 15 Artists</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-2xl font-bold text-white">Top 15 Artists</h2>
+            <InfoIcon
+              title="Top 15 Artists"
+              content={
+                <div>
+                  <p className="mb-2"><strong>Purpose:</strong> Compare top artists by track count and popularity.</p>
+                  <p className="mb-2"><strong>Y-axis:</strong> Artist names</p>
+                  <p className="mb-2"><strong>X-axis:</strong> Count/Score values</p>
+                  <p className="mb-2"><strong>Blue bars:</strong> Number of tracks by each artist in your collection</p>
+                  <p className="mb-2"><strong>Purple bars:</strong> Average popularity score (0-100) of their tracks</p>
+                  <p><strong>Insight:</strong> Find prolific artists (many tracks) vs. popular artists (high popularity scores). Sometimes they're the same, sometimes not!</p>
+                </div>
+              }
+            />
+          </div>
           <p className="text-sm text-gray-400 mb-4">
             Horizontal bar chart showing the top 15 artists by track count. Blue bars represent number of tracks, 
             purple bars show average popularity. Longer bars indicate more tracks or higher popularity.
