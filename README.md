@@ -136,6 +136,7 @@ in a SQLite database in the next phase.
 - SQLite database implementation
 - Advanced analytical queries
 - Additional dashboard features
+- have new UI
 
 ---
 
